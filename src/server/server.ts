@@ -69,7 +69,7 @@ export class Server {
       app.use(json({ type: "*/json", limit: "4Mb" }));
 
       app.get("/health", (req, res) => {
-        res.json("Vortex GCS Service is up and running");
+        res.json("Todd Rentfrow Backend Service is up and running");
       });
 
       // Use body parser to read sent json payloads
