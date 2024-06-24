@@ -1,0 +1,47 @@
+{
+  "name": "website-backend",
+  "version": "1.0.0",
+  "description": "Backend for my website",
+  "main": "dist/src/app.js",
+  "scripts": {
+    "test": "npm run test",
+    "build": "npm run build-tsoa && tsc --project tsconfig.json",
+    "start": "node -r dotenv/config dist/src/app.js",
+    "tsoa": "tsoa",
+    "build-tsoa": "tsoa spec-and-routes",
+    "gen-swagger": "tsoa swagger",
+    "clean": "rimraf dist",
+    "gen-routes": "tsoa routes",
+    "copy-swagger-ui": "ncp ./src/swagger-ui ./dist/swagger-ui",
+    "build-all": "npm run clean && npm run lint && npm run gen-swagger && npm run gen-routes && tsc && npm run copy-swagger-ui"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aurelia-dependency-injection": "1.5.2",
+    "bunyan": "1.8.15",
+    "compression": "1.7.4",
+    "cors": "2.8.5",
+    "dotenv": "16.4.5",
+    "express": "4.19.2",
+    "helmet": "7.1.0",
+    "pg": "8.12.0",
+    "pg-hstore": "2.3.4",
+    "reflect-metadata": "0.2.2",
+    "sequelize": "6.37.3",
+    "sequelize-typescript": "2.1.6",
+    "sequelizejs-decorators": "6.1.7",
+    "swagger-ui-express": "5.0.1",
+    "tsoa": "6.3.1"
+  },
+  "devDependencies": {
+    "@types/bunyan": "1.8.11",
+    "@types/compression": "1.7.5",
+    "@types/cors": "2.8.17",
+    "@types/express": "4.17.21",
+    "@types/node": "20.14.6",
+    "@types/pg": "8.11.6",
+    "@types/swagger-ui-express": "4.1.6",
+    "typescript": "5.4.5"
+  }
+}

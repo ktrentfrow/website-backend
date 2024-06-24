@@ -1,0 +1,1 @@
+export type NodeErrorCallback = (e: Error)=>void

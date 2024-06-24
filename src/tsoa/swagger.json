@@ -1,0 +1,251 @@
+{
+	"openapi": "3.0.0",
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"IWorkHistory": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"companyName": {
+						"type": "string"
+					},
+					"title": {
+						"type": "string"
+					},
+					"overview": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					},
+					"details": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"technologies": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"startDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"endDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"created": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updated": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"companyName",
+					"title",
+					"overview",
+					"description",
+					"details",
+					"technologies",
+					"startDate"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "website-backend",
+		"version": "1.0.0",
+		"description": "Backend for my website",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {}
+	},
+	"paths": {
+		"/api/work-history": {
+			"get": {
+				"operationId": "GetWorkHistories",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/IWorkHistory"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"description": "Gets all of the workHistorys.",
+				"tags": [
+					"WorkHistory"
+				],
+				"security": [],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "AddWorkHistory",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IWorkHistory"
+								}
+							}
+						}
+					}
+				},
+				"description": "Adds a new workHistory.\nSupply the unique workHistory id.",
+				"tags": [
+					"WorkHistory"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IWorkHistory"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/work-history/{id}": {
+			"get": {
+				"operationId": "GetWorkHistoryById",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IWorkHistory"
+								}
+							}
+						}
+					}
+				},
+				"description": "Gets a specific workHistory.\nSupply the unique workHistory id.",
+				"tags": [
+					"WorkHistory"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "The workHistory id",
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"put": {
+				"operationId": "UpdateWorkHistory",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "number",
+									"format": "double"
+								}
+							}
+						}
+					}
+				},
+				"description": "Updates a specific workHistory.\nSupply the unique workHistory id.",
+				"tags": [
+					"WorkHistory"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "The workHistory id",
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IWorkHistory"
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "DeleteWorkHistoryById",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "boolean"
+								}
+							}
+						}
+					}
+				},
+				"description": "Deletes a specific workHistory.\nSupply the unique workHistory id.",
+				"tags": [
+					"WorkHistory"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "The workHistory id",
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}
