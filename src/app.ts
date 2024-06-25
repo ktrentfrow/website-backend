@@ -35,25 +35,7 @@ const DB_DATABASE = process.env.DB_DATABASE ?? "my-website"; // defaultdb
 // let db: Database = iocContainer.get(TYPES.Database);
 let db: Database = new Database();;
 iocContainer.registerInstance(Database, db);
-const config = {
-  dialect: "postgres",
-  user: "avnadmin",
-  username: "avnadmin",
-  password: process.env.DB_PASSWORD,
-  host: "pg-332faedc-todd-0d85.d.aivencloud.com",
-  port: 22671,
-  database: "defaultdb",
-  ssl: true,
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: true,
-      ca: process.env.MY_CERT,
-    },
-  },
-};
-
-db.init(config);
+db.init();
 
 // db.init({
 //   dialect: "postgres",

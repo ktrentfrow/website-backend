@@ -19,6 +19,8 @@ const models: TsoaRoute.Models = {
             "id": {"dataType":"double"},
             "companyName": {"dataType":"string","required":true},
             "title": {"dataType":"string","required":true},
+            "city": {"dataType":"string","required":true},
+            "state": {"dataType":"string","required":true},
             "overview": {"dataType":"string","required":true},
             "description": {"dataType":"string","required":true},
             "details": {"dataType":"array","array":{"dataType":"string"},"required":true},

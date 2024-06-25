@@ -18,6 +18,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@ktrentfrow/common": "1.0.3",
     "aurelia-dependency-injection": "1.5.2",
     "bunyan": "1.8.15",
     "compression": "1.7.4",

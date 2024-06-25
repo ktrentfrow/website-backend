@@ -11,6 +11,28 @@ const DEFAULT_DB = "defaultdb";
 const DEFAULT_PORT = 22671;
 const DEFAULT_HOST = "pg-332faedc-todd-0d85.d.aivencloud.com";
 
+interface ExtendedOptions extends Options {
+  user: string;
+  defaultDatabase: string;
+}
+const config: ExtendedOptions = {
+  dialect: "postgres",
+  user: "avnadmin",
+  username: "avnadmin",
+  password: process.env.DB_PASSWORD,
+  host: "pg-332faedc-todd-0d85.d.aivencloud.com",
+  port: 22671,
+  database: "todds-stuff",
+  defaultDatabase: "defaultdb",
+  ssl: true,
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: true,
+      ca: process.env.MY_CERT,
+    },
+  },
+};
 
 // TODO: IMPORTANT MAKE ALL THE CONFIGS THE SAME FOR TEH DB. THERE IS A CONFIG IN APP.TS AND ONE HERE IN THIS FILE
 export class Database {
@@ -18,12 +40,12 @@ export class Database {
   private _models: {
     WorkHistory: WorkHistoryModel;
   };
-  private _config: Options;
+  private _config: ExtendedOptions;
 
   public constructor() {
   }
 
-  public init(config: unknown) {
+  public init() {
     this._config = config;
     this._config.logging = false; // TODO: set this based on dev/prod
     this._db = new Sequelize(config);
@@ -67,7 +89,7 @@ export class Database {
    * @param defaultDb default database for this postgres instance
    */
   public async createDb(defaultDb?: string): Promise<boolean> {
-    const client = this.getConfig(defaultDb);
+    const client = this.getConfig(true);
     let retVal = false;
     try {
       await client.connect();
@@ -85,7 +107,7 @@ export class Database {
   }
 
   public async dropDb(defaultDb?: string): Promise<void> {
-    const client = this.getConfig(defaultDb);
+    const client = this.getConfig(true);
     try {
       await client.connect();
 
@@ -128,7 +150,7 @@ export class Database {
     attempt: number,
     errorCallback: NodeErrorCallback | null = null
   ): Promise<boolean> {
-    const client = this.getConfig('defaultdb');
+    const client = this.getConfig(true);
     try {
       await client.connect();
       if (errorCallback !== null) {
@@ -145,13 +167,13 @@ export class Database {
     return false;
   }
   
-  private getConfig(defaultDb?: string): Client {
+  private getConfig(useDefault?: boolean): Client {
     const lconfig = {
         user: "avnadmin",
         password: process.env.DB_PASSWORD,
         host: "pg-332faedc-todd-0d85.d.aivencloud.com",
         port: 22671,
-        database: "defaultdb",
+        database: useDefault ? config.defaultDatabase : config.database, // "defaultdb",
         ssl: {
             rejectUnauthorized: false,
             ca: process.env.MY_CERT,

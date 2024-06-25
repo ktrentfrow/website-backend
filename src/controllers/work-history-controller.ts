@@ -16,7 +16,8 @@ import {
 } from "tsoa";
 import { autoinject } from "aurelia-dependency-injection";
 import { WorkHistoryService } from "../services/work-history-service";
-import { IWorkHistory, TYPES } from "../api";
+import { IWorkHistory } from "@ktrentfrow/common";
+import { TYPES } from "../api";
 
 //   import {
 //     testCustomMiddleware,

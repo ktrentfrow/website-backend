@@ -8,6 +8,7 @@
 		"responses": {},
 		"schemas": {
 			"IWorkHistory": {
+				"description": "Work history objects are entities within the system.",
 				"properties": {
 					"id": {
 						"type": "number",
@@ -17,6 +18,12 @@
 						"type": "string"
 					},
 					"title": {
+						"type": "string"
+					},
+					"city": {
+						"type": "string"
+					},
+					"state": {
 						"type": "string"
 					},
 					"overview": {
@@ -57,6 +64,8 @@
 				"required": [
 					"companyName",
 					"title",
+					"city",
+					"state",
 					"overview",
 					"description",
 					"details",

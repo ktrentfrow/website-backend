@@ -1,7 +1,7 @@
 import Logger from "bunyan";
 
 import { autoinject } from "aurelia-dependency-injection";
-import { IWorkHistory } from "../api";
+import { IWorkHistory } from "@ktrentfrow/common";
 import { LoggingUtils } from "..//utilities";
 import { Database } from "..//database/database";
 import { WorkHistory } from "@/database/entities";

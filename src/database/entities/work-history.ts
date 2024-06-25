@@ -8,7 +8,7 @@ import {
   PrimaryGeneratedColumn,
 } from "sequelizejs-decorators";
 import { DataType } from "sequelize-typescript";
-import { IWorkHistory } from "@/api";
+import { IWorkHistory } from "@ktrentfrow/common";
 
 @Entity()
 export abstract class WorkHistory
@@ -23,6 +23,12 @@ export abstract class WorkHistory
 
   @Column({ type: DataTypes.TEXT, allowNull: true })
   public title: string;
+
+  @Column({ type: DataTypes.TEXT, allowNull: true })
+  public city: string;
+
+  @Column({ type: DataTypes.TEXT, allowNull: true })
+  public state: string;
 
   @Column({ type: DataTypes.TEXT, allowNull: true })
   public overview: string;
